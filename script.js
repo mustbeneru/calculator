@@ -31,6 +31,9 @@ operations.forEach(operation => {
 })
 
 function appendNumber(digit) { 
+
+    if (output.textContent === '0') return;
+
     if (firstOperand === '' ) {
         if (output.textContent.startsWith('0.')) output.textContent += digit;
         else if (output.textContent.startsWith('-')) output.textContent += digit;
@@ -38,8 +41,12 @@ function appendNumber(digit) {
         firstOperand = output.textContent;
     } else if (operator !== '') {
         if (secondOperand.length !== 9) {
-            output.textContent += digit;    
             let string = output.textContent.toString().split(" ");
+            
+            if (string[2] === '0') return;
+            if (secondOperand.startsWith('0.')) output.textContent += digit;
+            else output.textContent += digit;    
+            string = output.textContent.toString().split(" ");
             console.log(string);
             secondOperand = string[2]; 
         }
