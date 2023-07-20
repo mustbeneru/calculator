@@ -31,9 +31,6 @@ operations.forEach(operation => {
 })
 
 function appendNumber(digit) { 
-
-    if (output.textContent === '0') return;
-
     if (firstOperand === '' ) {
         if (output.textContent.startsWith('0.')) output.textContent += digit;
         else if (output.textContent.startsWith('-')) output.textContent += digit;
@@ -52,6 +49,7 @@ function appendNumber(digit) {
         }
     } else {
         if (firstOperand.length !== 9 ) {
+            if (output.textContent === '0') return;
             output.textContent += digit;
             firstOperand = output.textContent;
         } 
